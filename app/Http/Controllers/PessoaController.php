@@ -27,12 +27,24 @@ class PessoaController extends Controller
 
         $dados = $request->data;
 
+        // Verificar se o usuário já está cadastrado pelo e-mail
+    $email = $dados['email'];
+    $telefone = $dados['telefone'];
+    $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
+
+    if ($userExists) {
+        $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
+            return $response;
+
+    }
 
         try {
             // Criar uma nova pessoa no banco de dados
             Pessoa::create([
                 'nome' => $dados['nome'],
-                'email' => $dados['emailForm'],
+                'email' => $dados['email'],
                 'telefone' => $dados['telefone'],
             ]);
 

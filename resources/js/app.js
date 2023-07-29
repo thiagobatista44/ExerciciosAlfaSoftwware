@@ -2,6 +2,41 @@ $(document).ready(function () {
 
   
     $("#telefone").mask("(99) 9999-99999");
+
+    // Função para validar o campo de e-mail
+    function validarEmail(email) {
+        // Expressão regular para verificar se o campo contém um e-mail válido
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Evento blur para verificar a validade do e-mail quando o campo perder o foco
+    $('#email').on('blur', function() {
+        var email = $(this).val();
+        if (!validarEmail(email)) {
+            swal.fire({
+                icon: "warning",
+                title: "O e-mail digitado é inválido",
+                text: "digite um e-mail válido contento '@' e o provedor"
+            });
+        }
+    })
+
+    $('#nome').on('blur', function() {
+        var nome = $(this).val();
+    
+        var regex = /^[A-Za-z]{6,}$/;
+    
+        if (!regex.test(nome)) {
+            swal.fire({
+                icon: 'warning',
+                type: "error",
+                title: "Nome Inválido",
+                text: "O nome deve ter mais de 5 caracteres e não pode conter números."
+            });
+            $('#nome').val('');
+        } 
+    });
     
 
 
@@ -243,15 +278,8 @@ $(document).ready(function () {
 
 });
 
-$("#nome_cadastro").keyup(function () {
 
-    var texto = $("#nome_cadastro").val()
 
-    texto = texto.toLowerCase().replace(/(?:^|\s)\S/g, function (a) {
-        return a.toUpperCase();
-    });
-    $("#nome_cadastro").val(texto);
-});
 
 
 

@@ -53,7 +53,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="nome_cadastro">Nome :</label>
-                                    <input type="text" id="nome" name="nome" class="form-control"
+                                    <input type="text" id="nomeEdit" name="nomeEdit" class="form-control"
                                         data-parsley-maxlength='100' data-parsley-trigger="focusout" autocomplete="off"
                                         value="{{ $pessoa->nome }}" required>
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="col-2">
                                 <div class="form-group">
                                     <label for="telefone">Contato :</label>
-                                    <input type="text" id="telefone" name="telefone" class="form-control"
+                                    <input type="text" id="telefoneEdit" name="telefoneEdit" class="form-control"
                                     placeholder="(99)9999-9999"
                                         data-parsley-maxlength='11' data-parsley-trigger="focusout" autocomplete="off"
                                         value="{{ $pessoa->telefone }}" required>
@@ -71,7 +71,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="emailForm">E-mail :</label>
-                                    <input class="form-control" id="emailForm" name='emailForm'type="email"
+                                    <input class="form-control" id="emailEdit" name='emailEdit'type="email"
                                     placeholder="name@example.com" value="{{ $pessoa->email }}" required/>
                                 </div>
 

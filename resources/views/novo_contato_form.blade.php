@@ -69,7 +69,7 @@
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="emailForm">E-mail :</label>
-                                    <input class="form-control" id="emailForm" name='emailForm'type="email"
+                                    <input class="form-control" id="email" name='email'type="email" class="form-control"
                                     placeholder="name@example.com" required/>
                                 </div>
 

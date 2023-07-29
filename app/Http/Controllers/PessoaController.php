@@ -26,10 +26,27 @@ class PessoaController extends Controller
     {
 
         $dados = $request->data;
+        $nome = $dados['nome'];
 
-        // Verificar se o usuário já está cadastrado pelo e-mail
-        $email = $dados['email'];
+        if (strlen($nome) < 5) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O nome não pode conter menos que 5 caracteres";
+            return $response;
+            
+        }
+        
         $telefone = $dados['telefone'];
+        if (strlen($telefone) !== 14) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O Número de telefone, deve conter obrigatóriamente 9 dígitos";
+            return $response;
+            
+        }
+
+        // Verificar se o usuário já está cadastrado pelo e-mail e telefone
+        $email = $dados['email'];
         $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
 
         if ($userExists) {
@@ -93,19 +110,29 @@ class PessoaController extends Controller
     {
 
         $dados = $request->data;
+        $email = $dados['email'];
+        $telefone = $dados['telefone'];
+        $nome = $dados['nome'];
 
-        if (strlen($dados['nome']) < 5) {
+        if (strlen($nome) < 5) {
             $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
             $response['text'] = "O nome não pode conter menos que 5 caracteres";
+            return $response;
+            
+        }
+
+        if (strlen($telefone) !== 14) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O Número de telefone, deve conter obrigatóriamente 9 dígitos";
+            return $response;
             
         }
 
         try {
         // Verificar se o usuário já está cadastrado pelo e-mail e
-        $email = $dados['email'];
-        $telefone = $dados['telefone'];
-        $nome = $dados['nome'];
+        
         $userExists = Pessoa::where(function ($query) use ($email, $telefone) {
             $query->where('email', $email)
                   ->orWhere('telefone', $telefone);

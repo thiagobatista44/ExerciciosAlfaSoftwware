@@ -22,6 +22,17 @@ $(document).ready(function () {
         }
     })
 
+    $('#emailEdit').on('blur', function() {
+        var email = $(this).val();
+        if (!validarEmail(email)) {
+            swal.fire({
+                icon: "warning",
+                title: "O e-mail digitado é inválido",
+                text: "digite um e-mail válido contento '@' e o provedor"
+            });
+        }
+    })
+
     $('#nome').on('blur', function() {
         var nome = $(this).val();
     
@@ -37,9 +48,8 @@ $(document).ready(function () {
             $('#nome').val('');
         } 
     });
+
     
-
-
     $("#listar_pessoas_conta").on(
         "click",
         ".deletePerson",
@@ -213,6 +223,19 @@ $(document).ready(function () {
 
             }
         );
+
+        var nome = $('#nomeEdit').val();
+        var regex = /^[A-Za-z]{6,}$/;
+        if (!regex.test(nome)) {
+            swal.fire({
+                icon: 'warning',
+                type: "error",
+                title: "Nome Inválido",
+                text: "O nome deve ter mais de 5 caracteres e não pode conter números."
+            });
+            
+        } 
+   
 
         console.log(valid);
         if (valid < 3) {

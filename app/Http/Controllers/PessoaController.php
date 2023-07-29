@@ -94,6 +94,7 @@ class PessoaController extends Controller
     {
 
         $dados = $request->data;
+
         try {
             // Localizar a pessoa pelo ID
             $pessoa = Pessoa::findOrFail($dados['id']);

@@ -26,7 +26,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+       
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
@@ -36,7 +36,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+      
     </nav>
 
 

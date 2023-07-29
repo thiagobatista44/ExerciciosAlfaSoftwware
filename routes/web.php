@@ -4,7 +4,8 @@ date_default_timezone_set('America/Sao_Paulo');
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContatoController;
+use App\Http\Controllers\Home;
 
 
 /*
@@ -25,6 +26,14 @@ Route::get('/', function () {
 
 Route::GET('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate']);
+
+
+Route::get('NewContact', [ContatoController::class, 'create'])->name('NewContact');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::middleware(['auth:web'])->group(function () {
+    Route::get('/home', [Home::class, 'Index'])->name('home');
+});
 
 
 

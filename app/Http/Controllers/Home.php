@@ -9,9 +9,9 @@ class Home extends Controller
 {
     public function Index(){
 
-     $pessoas = DB::table('pessoas')->get();
+   
 
-        return view ('welcome', compact('pessoas'));
+        return view ('home');
     }
 
     public function Count(){

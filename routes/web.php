@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContatoController;
 use App\Http\Controllers\Home;
+use App\Http\Controllers\PessoaController;
 
 
 /*
@@ -33,6 +34,11 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [Home::class, 'Index'])->name('home');
+
+    Route::post('/CreatePessoas', [PessoaController::class, 'store'])->name('pessoas.store');
+   
+
+
 });
 
 

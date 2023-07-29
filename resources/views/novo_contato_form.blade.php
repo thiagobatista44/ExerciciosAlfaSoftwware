@@ -30,21 +30,7 @@
                 <ul class="navbar-nav ml-auto">
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="login">Home</a>
-                    </li>
-                  
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mais Opções
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                           
-                            <a class="dropdown-item" href="#">Listar de Contatos Existentes</a>
-                            <a class="dropdown-item" href="{{ route("NewContact") }}">Adicionar novos Contatos</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Detalhes dos Contatos</a>
-                            <a class="dropdown-item" href="/">Logout</a>
-                        </div>
+                        <a class="nav-link" href="/home">Home</a>
                     </li>
                 </ul>
             </div>
@@ -65,27 +51,29 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="nome_cadastro">Nome :</label>
-                                    <input type="text" id="nome_cadastro" name="nome_cadastro" class="form-control"
+                                    <input type="text" id="nome" name="nome" class="form-control"
                                         data-parsley-maxlength='100' data-parsley-trigger="focusout" autocomplete="off"
                                         value='' required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="form-group">
-                                    <label for="nome_cadastro">Contato :</label>
-                                    <input type="text" id="nome_cadastro" name="nome_cadastro" class="form-control"
-                                        data-parsley-maxlength='100' data-parsley-trigger="focusout" autocomplete="off"
+                                    <label for="telefone">Contato :</label>
+                                    <input type="text" id="telefone" name="telefone" class="form-control"
+                                    placeholder="(99)9999-9999"
+                                        data-parsley-maxlength='11' data-parsley-trigger="focusout" autocomplete="off"
                                         value='' required>
                                 </div>
                             </div>
 
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="nome_cadastro">E-mail :</label>
-                                    <input type="text" id="nome_cadastro" name="nome_cadastro" class="form-control"
-                                        data-parsley-maxlength='100' data-parsley-trigger="focusout" autocomplete="off"
-                                        value='' required>
+                                    <label for="emailForm">E-mail :</label>
+                                    <input class="form-control" id="emailForm" name='emailForm'type="email"
+                                    placeholder="name@example.com" required/>
                                 </div>
+
+
                             </div>
                             
                         </div>

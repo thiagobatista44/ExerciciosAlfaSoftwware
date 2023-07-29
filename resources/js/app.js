@@ -1,72 +1,9 @@
 $(document).ready(function () {
 
-    $("#CPF").mask('000.000.000-00', { reverse: true });
-    $(".validador_cpf").mask('000.000.000-00', { reverse: true });
-    $('.money').mask('#.##0,00', { reverse: true });
+  
+    $("#telefone").mask("(99) 9999-9999[9]");
+    
 
-
-    function limpa_formulário_cep() {
-        // Limpa valores do formulário de cep.
-        $("#rua").val("");
-        $("#bairro").val("");
-        $("#cidade").val("");
-        $("#uf").val("");
-        $("#ibge").val("");
-    }
-
-    //Quando o campo cep perde o foco.
-    $("#cep").blur(function () {
-
-        //Nova variável "cep" somente com dígitos.
-        var cep = $(this).val().replace(/\D/g, '');
-
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
-
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
-
-            //Valida o formato do CEP.
-            if (validacep.test(cep)) {
-
-                //Preenche os campos com "..." enquanto consulta webservice.
-                $("#rua_endereco").val("...");
-                $("#bairro").val("...");
-                $("#cidade").val("...");
-                $("#uf").val("...");
-
-
-                //Consulta o webservice viacep.com.br/
-                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
-                    if (!("erro" in dados)) {
-                        //Atualiza os campos com os valores da consulta.
-                        $("#rua_endereco").val(dados.logradouro);
-                        $("#bairro").val(dados.bairro);
-                        $("#cidade").val(dados.localidade);
-                        $("#uf").val(dados.uf);
-
-                    } //end if.
-                    else {
-                        //CEP pesquisado não foi encontrado.
-                        limpa_formulário_cep();
-                        alert("CEP não encontrado.");
-                    }
-                });
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    });
-
-    // remove pessoa do sistema 
 
     $("#listar_pessoas_conta").on(
         "click",
@@ -160,7 +97,7 @@ $(document).ready(function () {
         );
 
         console.log(valid);
-        if (valid < 8) {
+        if (valid < 3) {
             swal.fire({
                 icon: 'warning',
                 title: "Exite Campo(s) vazio(s).",
@@ -179,7 +116,7 @@ $(document).ready(function () {
         swal.showLoading();
         $.ajax({
             url:
-                "/createPerson",
+                "/CreatePessoas",
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },

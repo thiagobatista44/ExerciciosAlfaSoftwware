@@ -27,10 +27,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="/home">Home</a>
                     </li>
@@ -40,72 +40,74 @@
     </nav>
 
 
-<div class="row col-12">
-    <div class="col-12">
-        <div class="card">
+    <div class="row col-12">
+        <div class="col-12">
+            <div class="card">
 
-            <h4 class="card-title">LISTA DE CONTATOS</h4>
+                <h4 class="card-title">LISTA DE CONTATOS</h4>
 
-            <hr />
+                <hr />
 
-            <table id="listar_pessoas_conta" class="table table-striped table-bordered dt-responsive nowrap"
-                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOME</th>
-                        <th>TELEFONE</th>
-                        <th>EMAIL</th>
-                        <th>EDITAR</th>
-                        <th>REMOVER</th>
+                <table id="listar_pessoas_conta" class="table table-striped table-bordered dt-responsive nowrap"
+                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>TELEFONE</th>
+                            <th>EMAIL</th>
+                            <th>EDITAR</th>
+                            <th>REMOVER</th>
 
-                    </tr>
-                </thead>
-                <tbody>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    @foreach($pessoas as $pessoa)
-                    <tr>
-                        <td>{{$pessoa->id}}</td>
-                        <td>{{$pessoa->nome}}</td>
-                        <td>{{$pessoa->telefone}}</td>
-                        <td>{{$pessoa->email}}</td>
-                        <td>
-                            <a href="#" class="btn btn-info editPerson" role="button"
-                                data-bs-toggle="button">Editar</a>
-                        </td>
-                        <td>
-                            <a href="#" class="btn btn-danger deletePerson" role="button"
-                                data-bs-toggle="button">Deletar</a>
-                            @csrf
-
-                        </td>
+                        @foreach($pessoas as $pessoa)
+                        <tr>
+                            <td>{{$pessoa->id}}</td>
+                            <td>{{$pessoa->nome}}</td>
+                            <td>{{$pessoa->telefone}}</td>
+                            <td>{{$pessoa->email}}</td>
+                            <td>
 
 
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                <a href="{{ route('pessoas.edit', ['id' => $pessoa->id]) }}" class="btn btn-info"
+                                    role="button" data-bs-toggle="button">Editar</a>
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-danger deletePerson" role="button"
+                                    data-bs-toggle="button">Deletar</a>
+                                @csrf
+
+                            </td>
+
+
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-@yield('conteudo')
+    @yield('conteudo')
 </body>
 
 

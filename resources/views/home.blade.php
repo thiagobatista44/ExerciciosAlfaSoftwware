@@ -38,12 +38,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                        
-                        <a class="dropdown-item" href="{{ route("listarPessoas")}}">Listar de Contatos Existentes</a>
                         <a class="dropdown-item" href="{{ route("NewContact") }}">Adicionar novos Contatos</a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route("listarPessoas")}}">Listar de Contatos Existentes</a>
                         <a class="dropdown-item" href="{{ route("listarPessoasDetalhada")}}">Detalhes dos Contatos</a>
                         
-
+                        <div class="dropdown-divider"></div>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="header-sign-out">

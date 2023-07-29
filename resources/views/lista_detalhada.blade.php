@@ -4,7 +4,6 @@
 <head>
 
     <meta charset="utf-8" name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('titulo', 'Cadastro e Movimentação de Contas')</title>
     <style media="screen"> </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"

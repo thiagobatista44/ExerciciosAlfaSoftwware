@@ -10,24 +10,24 @@ class PessoaController extends Controller
 {
     public function index()
     {
-       
+
         $pessoas = Pessoa::all();
         return view('listar_contato_existente', compact('pessoas'));
     }
 
     public function indexDetalhe()
     {
-       
+
         $pessoas = Pessoa::all();
         return view('lista_detalhada', compact('pessoas'));
     }
 
     public function store(Request $request)
     {
-      
+
         $dados = $request->data;
 
-      
+
         try {
             // Criar uma nova pessoa no banco de dados
             Pessoa::create([
@@ -69,5 +69,38 @@ class PessoaController extends Controller
             return $response;
         }
     }
-    
+
+    public function edit($id)
+    {
+        // Localizar a pessoa pelo ID
+        $pessoa = Pessoa::findOrFail($id);
+        // Retornar uma view que exibe o formulário de edição com os dados da pessoa
+        return view('contatos_telaEdicao', compact('pessoa'));
+    }
+
+    public function update(Request $request)
+    {
+
+        $dados = $request->data;
+        try {
+            // Localizar a pessoa pelo ID
+            $pessoa = Pessoa::findOrFail($dados['id']);
+
+            // Preencher a instância da pessoa com os novos dados do formulário
+            $pessoa->fill($dados);
+
+            // Salvar as alterações no banco de dados
+            $pessoa->save();
+
+            $response['resultado'] = 'OK';
+            $response['title'] = 'Pessoa Atualizados com Sucesso';
+            $response['text'] = 'Dados Atualizados';
+            return $response;
+        } catch (\Exception $e) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = $e->getMessage();
+            return $response;
+        }
+    }
 }

@@ -39,6 +39,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/listarPessoas', [PessoaController::class, 'index'])->name('listarPessoas');
     Route::get('/listarPessoasDetalhada', [PessoaController::class, 'indexDetalhe'])->name('listarPessoasDetalhada');
     Route::post('/deletePerson', [PessoaController::class, 'destroy'])->name('detetar.pessoa');
+    Route::get('/pessoas/{id}/edit', [PessoaController::class, 'edit'])->name('pessoas.edit');
+    Route::post('/UpdatePessoas', [PessoaController::class, 'update'])->name('editar.pessoa');
    
 
 

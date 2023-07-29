@@ -12,9 +12,14 @@ class PessoaController extends Controller
     {
        
         $pessoas = Pessoa::all();
+        return view('listar_contato_existente', compact('pessoas'));
+    }
 
+    public function indexDetalhe()
+    {
        
-        return view('pessoas.index', compact('pessoas'));
+        $pessoas = Pessoa::all();
+        return view('lista_detalhada', compact('pessoas'));
     }
 
     public function store(Request $request)
@@ -22,7 +27,6 @@ class PessoaController extends Controller
       
         $dados = $request->data;
 
-      
       
         try {
             // Criar uma nova pessoa no banco de dados
@@ -36,6 +40,26 @@ class PessoaController extends Controller
             $response['title'] = 'Pessoa Cadastrada com Sucesso';
             $response['text'] = 'Dados Salvos';
             return $response;
+        } catch (\Exception $e) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = $e->getMessage();
+            return $response;
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            // Localizar a pessoa pelo ID
+            $pessoa = Pessoa::findOrFail($id);
+
+            // Excluir a pessoa do banco de dados
+            $pessoa->delete();
+
+            $response['resultado'] = 'OK';
+            $response['title'] = 'Pessoa Excluída com Sucesso';
+            $response['text'] = 'Dados Atualizados';
         } catch (\Exception $e) {
             $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';

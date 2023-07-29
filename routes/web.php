@@ -1,6 +1,11 @@
 <?php
 
+date_default_timezone_set('America/Sao_Paulo');
+
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +19,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+
+Route::GET('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'authenticate']);
+
+
+

@@ -224,19 +224,6 @@ $(document).ready(function () {
             }
         );
 
-        var nome = $('#nomeEdit').val();
-        var regex = /^[A-Za-z]{6,}$/;
-        if (!regex.test(nome)) {
-            swal.fire({
-                icon: 'warning',
-                type: "error",
-                title: "Nome Inválido",
-                text: "O nome deve ter mais de 5 caracteres e não pode conter números."
-            });
-            
-        } 
-   
-
         console.log(valid);
         if (valid < 3) {
             swal.fire({

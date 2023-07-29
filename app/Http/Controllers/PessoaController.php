@@ -28,17 +28,16 @@ class PessoaController extends Controller
         $dados = $request->data;
 
         // Verificar se o usuário já está cadastrado pelo e-mail
-    $email = $dados['email'];
-    $telefone = $dados['telefone'];
-    $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
+        $email = $dados['email'];
+        $telefone = $dados['telefone'];
+        $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
 
-    if ($userExists) {
-        $response['resultado'] = 'ERRO';
+        if ($userExists) {
+            $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
             $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
             return $response;
-
-    }
+        }
 
         try {
             // Criar uma nova pessoa no banco de dados
@@ -94,6 +93,25 @@ class PessoaController extends Controller
     {
 
         $dados = $request->data;
+
+        if (strlen($dados['nome']) < 5) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O nome não pode conter menos que 5 caracteres";
+            return $response;
+        }
+
+        // Verificar se o usuário já está cadastrado pelo e-mail
+        $email = $dados['email'];
+        $telefone = $dados['telefone'];
+        $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
+
+        if ($userExists) {
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
+            return $response;
+        }
 
         try {
             // Localizar a pessoa pelo ID

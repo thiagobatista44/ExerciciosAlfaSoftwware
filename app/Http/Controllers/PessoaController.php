@@ -98,39 +98,47 @@ class PessoaController extends Controller
             $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
             $response['text'] = "O nome não pode conter menos que 5 caracteres";
-            return $response;
-        }
-
-        // Verificar se o usuário já está cadastrado pelo e-mail
-        $email = $dados['email'];
-        $telefone = $dados['telefone'];
-        $userExists = Pessoa::where('email', $email)->orWhere('telefone', $telefone)->exists();
-
-        if ($userExists) {
-            $response['resultado'] = 'ERRO';
-            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
-            $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
-            return $response;
+            
         }
 
         try {
-            // Localizar a pessoa pelo ID
-            $pessoa = Pessoa::findOrFail($dados['id']);
+        // Verificar se o usuário já está cadastrado pelo e-mail e
+        $email = $dados['email'];
+        $telefone = $dados['telefone'];
+        $nome = $dados['nome'];
+        $userExists = Pessoa::where(function ($query) use ($email, $telefone) {
+            $query->where('email', $email)
+                  ->orWhere('telefone', $telefone);
+        })->where('id', '<>', $dados['id'])->exists();
 
-            // Preencher a instância da pessoa com os novos dados do formulário
-            $pessoa->fill($dados);
 
-            // Salvar as alterações no banco de dados
-            $pessoa->save();
+        if (!$userExists || $userExists && ($userExists->email === $email || $userExists->telefone === $telefone)) {
+            $user = Pessoa::find($dados['id']);
+            $user->update([
+                'email' => $email,
+                'telefone' => $telefone,
+                'nome' => $nome,
+            ]);
 
             $response['resultado'] = 'OK';
             $response['title'] = 'Pessoa Atualizados com Sucesso';
             $response['text'] = 'Dados Atualizados';
             return $response;
+        } else if($userExists)
+        {
+
+            $response['resultado'] = 'ERRO';
+            $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
+            $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
+            return $response;
+
+        } 
+    
+           
         } catch (\Exception $e) {
             $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';
-            $response['text'] = $e->getMessage();
+            $response['text'] = "O email ou Telefone informado já foi cadastrado por outro usuário";
             return $response;
         }
     }

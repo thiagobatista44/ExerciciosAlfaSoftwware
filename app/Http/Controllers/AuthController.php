@@ -22,10 +22,6 @@ class AuthController extends Controller
     if (Auth::attempt($credentials)) {
         return $this->sendLoginResponse($request);
     } else {
-        $response['resultado'] = 'O login encontra-se dentro do DatabaseSeeder';
-            $response['Para logar no sistema use o e-mail '] = 'teste@example.com';
-            $response['e a senha'] = 'senha123';
-            return $response;
             return $this->sendFailedLoginResponse($request);
     }
 }

@@ -33,23 +33,6 @@ $(document).ready(function () {
         }
     })
 
-    $('#nome').on('blur', function() {
-        var nome = $(this).val();
-    
-        var regex = /^[A-Za-z]{6,}$/;
-    
-        if (!regex.test(nome)) {
-            swal.fire({
-                icon: 'warning',
-                type: "error",
-                title: "Nome Inválido",
-                text: "O nome deve ter mais de 5 caracteres e não pode conter números."
-            });
-            $('#nome').val('');
-        } 
-    });
-
-    
     $("#listar_pessoas_conta").on(
         "click",
         ".deletePerson",

@@ -48,11 +48,12 @@ class PessoaController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+
         try {
             // Localizar a pessoa pelo ID
-            $pessoa = Pessoa::findOrFail($id);
+            $pessoa = Pessoa::findOrFail($request->id);
 
             // Excluir a pessoa do banco de dados
             $pessoa->delete();
@@ -60,6 +61,7 @@ class PessoaController extends Controller
             $response['resultado'] = 'OK';
             $response['title'] = 'Pessoa Excluída com Sucesso';
             $response['text'] = 'Dados Atualizados';
+            return $response;
         } catch (\Exception $e) {
             $response['resultado'] = 'ERRO';
             $response['title'] = 'ERRO AO CADASTRAR INFORMAÇÕES';

@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
   
-    $("#telefone").mask("(99) 9999-9999[9]");
+    $("#telefone").mask("(99) 9999-99999");
     
 
 
@@ -10,7 +10,12 @@ $(document).ready(function () {
         ".deletePerson",
         function (event) {
             event.preventDefault();
-            var cpf = $(this)
+            var id = $(this)
+                .closest("tr")
+                .find("td:eq(0)")
+                .text();
+
+                var nome = $(this)
                 .closest("tr")
                 .find("td:eq(1)")
                 .text();
@@ -18,8 +23,8 @@ $(document).ready(function () {
             swal.fire({
                 icon: 'warning',
                 title:
-                    "Deseja excluir os dados da pessoa do CPF " +
-                    cpf +
+                    "Deseja excluir os dados da pessoa " +
+                    nome +
                     " do Sistema? ",
                 allowOutsideClick: false,
                 showCancelButton: true,
@@ -48,14 +53,14 @@ $(document).ready(function () {
                         },
                         type: "POST",
                         data: {
-                            cpf
+                            id
                         },
                         dataType: "json",
                         success: function (data) {
                             if (data.resultado == "OK") {
                                 swal.fire({
                                     icon: "success",
-                                    title: "Pessoa Encontrada",
+                                    title: "Pessoa Removida",
                                     text: "Pessoa Removida do sistema com sucesso."
                                 });
                                 window.location.reload();

@@ -2,6 +2,7 @@ $(document).ready(function () {
 
   
     $("#telefone").mask("(99)9999-99999");
+    $("#telefoneEdit").mask("(99)9999-99999");
 
     // Função para validar o campo de e-mail
     function validarEmail(email) {
